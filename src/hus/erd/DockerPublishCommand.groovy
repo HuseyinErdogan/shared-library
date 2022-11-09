@@ -19,7 +19,7 @@ class DockerPublishCommand extends Command {
         return new DockerPublishCommand()
     }
 
-    private DockerPublishCommand() {
+    public DockerPublishCommand() {
         this.metadata[TAG] = ''
         this.metadata[SNAPSHOT] = false
         this.metadata[STATIC_VERSION] = DEFAULT_STATIC_VERSION
