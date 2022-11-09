@@ -1,4 +1,6 @@
 def call() {
-    return new DockerPublishCommand();
+    def image =  new DockerPublishCommand();
+    image.withTag("TESTST");
+    image.build();
 }
 
