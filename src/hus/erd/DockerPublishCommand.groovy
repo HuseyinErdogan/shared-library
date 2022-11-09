@@ -7,6 +7,7 @@ class DockerPublishCommand extends Command {
     public static final String BUILD_DIRECTORY = 'BUILD_DIRECTORY'
     public static final String DOCKERFILE = 'DOCKERFILE'
     public static final String BUILD_ARGS = 'BUILD_ARGS'
+    public static final String RESULT = ''
 
     public static final String DEFAULT_BUILD_DIRECTORY = '.'
     public static final String DEFAULT_DOCKERFILE = ''
@@ -107,7 +108,8 @@ class DockerPublishCommand extends Command {
         // - gcr.io/softtech-rally/devops/new_ci_build:latest
         String latestTag = "${baseTag}:${version}"
 
-        println("docker build --no-cache ${dockerFileParam} -t ${dockerTag} ${buildArgsStr} ${buildDirectory}")
+        this.RESULT = "docker build --no-cache ${dockerFileParam} -t ${dockerTag} ${buildArgsStr} ${buildDirectory}"
+        println(this.RESULT)
         return this
     }
 
