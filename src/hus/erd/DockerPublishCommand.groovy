@@ -1,3 +1,5 @@
+package hus.erd
+
 import hus.erd.Command
 
 class DockerPublishCommand extends Command {
