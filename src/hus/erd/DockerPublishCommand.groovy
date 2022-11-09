@@ -1,4 +1,4 @@
-package hus.erd
+import hus.erd.Command
 
 class DockerPublishCommand extends Command {
     public static final String TAG = "TAG"
@@ -7,11 +7,13 @@ class DockerPublishCommand extends Command {
     public static final String BUILD_DIRECTORY = 'BUILD_DIRECTORY'
     public static final String DOCKERFILE = 'DOCKERFILE'
     public static final String BUILD_ARGS = 'BUILD_ARGS'
-    public static final String RESULT = ''
+    public static final String RESULT = 'RESULT'
 
     public static final String DEFAULT_BUILD_DIRECTORY = '.'
     public static final String DEFAULT_DOCKERFILE = ''
     public static final String DEFAULT_STATIC_VERSION = ''
+    public static final String DEFAULT_RESULT = ''
+    
 
     static DockerPublishCommand builder() {
         return new DockerPublishCommand()
@@ -24,6 +26,7 @@ class DockerPublishCommand extends Command {
         this.metadata[BUILD_DIRECTORY] = DEFAULT_BUILD_DIRECTORY
         this.metadata[DOCKERFILE] = DEFAULT_DOCKERFILE
         this.metadata[BUILD_ARGS] = []
+        this.metadata[RESULT] = DEFAULT_RESULT
     }
 
 
@@ -108,14 +111,14 @@ class DockerPublishCommand extends Command {
         // - gcr.io/softtech-rally/devops/new_ci_build:latest
         String latestTag = "${baseTag}:${version}"
 
-        this.RESULT = "docker build --no-cache ${dockerFileParam} -t ${dockerTag} ${buildArgsStr} ${buildDirectory}"
-        println(this.RESULT)
+        this.metadata[RESULT] = "docker build --no-cache ${dockerFileParam} -t ${dockerTag} ${buildArgsStr} ${buildDirectory}"
+        println(this.metadata[RESULT])
         return this
     }
 
     @Override
     String toString() {
-        return "Docker Publish"
+        return this.metadata[RESULT]
     }
 
 }
